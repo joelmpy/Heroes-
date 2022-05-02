@@ -26,7 +26,7 @@ const HeroSchema = mongoose.Schema({
   image: String,
 });
 
-// Creation de mon model pour ma base de données et transmettre les information //
+// Creation de mon model pour ma base de données et transmettre les information pour cree une nouvelle collection sur ma DB//
 const HeroModel = mongoose.model("Marvel", HeroSchema);
 
 // vERIFICATION DE MA PAGE //
@@ -68,7 +68,17 @@ app.get("/heroes/:slug/powers", function (req, res, next) {
         })
 })
 
+// Quartrième chemin de ma page pour recuperer les heros // 
 
+
+app.post('/', function (req, res) {
+  console.log(req.body)
+  res.send('ok')
+  HeroModel.create(req.body)
+    .then( (hero) => {
+      res.json (hero)
+    })
+})
 
 
 
